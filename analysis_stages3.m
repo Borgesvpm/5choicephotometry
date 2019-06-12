@@ -26,9 +26,6 @@ for rat = 1:numel(ratNames)
     ratSessions = dir(strcat('*', ratNames{rat}, '*'));
     ratSessions = ratSessions([ratSessions.isdir]);
     
-    % generate structure for rat
-    stageData = struct();
-
     % list all mat files in folder
     allFiles = dir('*.mat');
     matFiles = {allFiles(1:end).name};
@@ -44,6 +41,9 @@ for rat = 1:numel(ratNames)
     % check if session isn't already analyzed
     if sum(contains(matFiles, fn))==0
         
+        % generate structure for rat
+        stageData = struct();
+
         % loop through all sessions from a rat
         for sess = 1:numel(ratSessions)
             
@@ -73,10 +73,12 @@ for rat = 1:numel(ratNames)
             end
         end
         
-    end
-    
+        
+        
     save(fn, 'stageData')
     fprintf('%s\n',char(strcat({'Saved file as: '}, fn)));
+    
+    end
     
 end
         
