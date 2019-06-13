@@ -9,6 +9,8 @@ function analysis_stages3
 sessions = dir('*g*m*'); % be at the proper folder if you want to do this
 currentDir = pwd;
 
+x = rand(1,5);
+
 sessions = sessions([sessions.isdir]);
 
 % Determine group names
